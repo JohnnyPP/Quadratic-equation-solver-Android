@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class QuadraticEquationSolver extends ActionBarActivity {
 
@@ -60,6 +62,12 @@ public class QuadraticEquationSolver extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_quadratic_equation_solver, container, false);
             return rootView;
         }
+    }
+
+    public void solveEquation(View view)
+    {
+        TextView textView = (TextView) findViewById(R.id.textViewSolution);
+        textView.setText("The solution goes there!");
     }
 
 }

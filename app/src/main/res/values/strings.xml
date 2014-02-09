@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Quadratic-Equation-Solver</string>
-    <string name="hello_world">Solution</string>
+    <string name="printSolution">Solution</string>
     <string name="action_settings">Settings</string>
 
 </resources>
