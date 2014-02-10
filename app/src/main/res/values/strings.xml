@@ -4,5 +4,6 @@
     <string name="app_name">Quadratic-Equation-Solver</string>
     <string name="printSolution">Solution</string>
     <string name="action_settings">Settings</string>
+    <string name="buttonSolution">Click for solution</string>
 
 </resources>

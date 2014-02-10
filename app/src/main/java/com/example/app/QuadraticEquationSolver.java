@@ -66,8 +66,16 @@ public class QuadraticEquationSolver extends ActionBarActivity {
 
     public void solveEquation(View view)
     {
+        EditText inputTxt = (EditText) findViewById(R.id.editText);
         TextView textView = (TextView) findViewById(R.id.textViewSolution);
-        textView.setText("The solution goes there!");
+
+        // Store EditText in Variable
+        String str = inputTxt.getText().toString();
+
+
+        textView.setText("The solution " + str);
+
+
     }
 
 }
