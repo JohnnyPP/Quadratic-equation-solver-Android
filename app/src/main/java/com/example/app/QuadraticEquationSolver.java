@@ -1,10 +1,8 @@
 package com.example.app;
 
-import android.content.res.Configuration;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -106,7 +104,8 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         }
         else
         {
-            return LinearEquation();
+            textView.setText(LinearEquation(b, c));
+            return LinearEquation(b, c);
         }
 
     }
@@ -141,9 +140,9 @@ public class QuadraticEquationSolver extends ActionBarActivity {
                 + "\n\rRoot2: " + xReal + " - i" + xImaginary;
     }
 
-    private String LinearEquation()
+    private String LinearEquation(float b, float c)
     {
-        return "LE.LinEquation(b, c)";
+        return "Linear equation has only one root: " + (-c / b);
     }
 
 }
