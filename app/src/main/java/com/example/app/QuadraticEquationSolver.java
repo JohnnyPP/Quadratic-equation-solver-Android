@@ -86,7 +86,7 @@ public class QuadraticEquationSolver extends ActionBarActivity {
 
             if (Discriminant == 0)
             {
-                return DiscriminantEqualZero();
+                return DiscriminantEqualZero(a, b, Discriminant);
             }
 
             if (Discriminant > 0)
@@ -110,9 +110,12 @@ public class QuadraticEquationSolver extends ActionBarActivity {
 
     }
 
-    private String DiscriminantEqualZero()
+    private String DiscriminantEqualZero(float a, float b, float Discriminant)
     {
-        return "DEZ.DiscrEqualZero(a, b, Discriminant)";
+
+        return "The equation has only one root.\n\r" + "Discriminant: "
+                + Discriminant + "\n\rRoot: " + (-b - Math.sqrt(Discriminant)) / (2 * a);
+
     }
 
     private String DiscriminantGreaterThanZero(float a, float b, float Discriminant)
