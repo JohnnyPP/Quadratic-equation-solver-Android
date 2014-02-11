@@ -98,7 +98,7 @@ public class QuadraticEquationSolver extends ActionBarActivity {
 
             if (Discriminant < 0)
             {
-                return DiscriminantLessThanZero();
+                return DiscriminantLessThanZero(a, b, c, Discriminant);
             }
 
             return "Quadratic equation return path";
@@ -109,6 +109,8 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         }
 
     }
+
+
 
     private String DiscriminantEqualZero(float a, float b, float Discriminant)
     {
@@ -127,9 +129,15 @@ public class QuadraticEquationSolver extends ActionBarActivity {
                 + "\n\rRoot1: " + x1 + "\n\r" + "Root2: " + x2;
     }
 
-    private String DiscriminantLessThanZero()
+    private String DiscriminantLessThanZero(float a, float b, float c, float Discriminant)
     {
-        return "DLTZ.DiscrLessThanZero(a, b, c, Discriminant)";
+        double xReal = -b / (2 * a);
+        double xImaginary = (Math.sqrt(4 * a * c - b * b)) / (2 * a);
+
+        return "The equation has two complex roots.\n\r" + "Discriminant: "
+                + Discriminant
+                + "\n\rRoot1: " + xReal + " + i" + xImaginary
+                + "\n\rRoot2: " + xReal + " - i" + xImaginary;
     }
 
     private String LinearEquation()
