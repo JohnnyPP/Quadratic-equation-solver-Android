@@ -1,8 +1,10 @@
 package com.example.app;
 
+import android.content.res.Configuration;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,15 +79,13 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         float b = Float.parseFloat(splitStrings[1]);
         float c = Float.parseFloat(splitStrings[2]);
 
-
-        //textView.setText("The solution " + a + b + c);
-
         if (a != 0)
         {
             Discriminant = b * b - 4 * a * c;
 
             if (Discriminant == 0)
             {
+                textView.setText(DiscriminantEqualZero(a, b, Discriminant));
                 return DiscriminantEqualZero(a, b, Discriminant);
             }
 
@@ -98,6 +98,7 @@ public class QuadraticEquationSolver extends ActionBarActivity {
 
             if (Discriminant < 0)
             {
+                textView.setText(DiscriminantLessThanZero(a, b, c, Discriminant));
                 return DiscriminantLessThanZero(a, b, c, Discriminant);
             }
 
