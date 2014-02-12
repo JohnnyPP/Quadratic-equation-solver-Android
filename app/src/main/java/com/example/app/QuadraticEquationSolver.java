@@ -25,7 +25,6 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
@@ -62,7 +61,7 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         }
     }
 
-    public String solveEquation(View view)
+    public void solveEquation(View view)
     {
         EditText inputTxt = (EditText) findViewById(R.id.editText);
         TextView textView = (TextView) findViewById(R.id.textViewSolution);
@@ -85,43 +84,33 @@ public class QuadraticEquationSolver extends ActionBarActivity {
                 if (Discriminant == 0)
                 {
                     textView.setText(DiscriminantEqualZero(a, b, Discriminant));
-                    return DiscriminantEqualZero(a, b, Discriminant);
                 }
 
                 if (Discriminant > 0)
                 {
                     textView.setText(DiscriminantGreaterThanZero(a, b, Discriminant));
-                    return DiscriminantGreaterThanZero(a, b, c);
                 }
 
                 if (Discriminant < 0)
                 {
                     textView.setText(DiscriminantLessThanZero(a, b, c, Discriminant));
-                    return DiscriminantLessThanZero(a, b, c, Discriminant);
                 }
-
-                return "Quadratic equation return path";
             }
             else
             {
                 textView.setText(LinearEquation(b, c));
-                return LinearEquation(b, c);
             }
         }
         catch (Exception e)
         {
             textView.setText("Error: " + e);
-            return "Error check the input values and format";
         }
-
     }
 
     private String DiscriminantEqualZero(float a, float b, float Discriminant)
     {
-
         return "The equation has only one root.\n\r" + "Discriminant: "
                 + Discriminant + "\n\rRoot: " + (-b - Math.sqrt(Discriminant)) / (2 * a);
-
     }
 
     private String DiscriminantGreaterThanZero(float a, float b, float Discriminant)
