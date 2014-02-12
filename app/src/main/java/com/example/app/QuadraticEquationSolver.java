@@ -67,48 +67,54 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         EditText inputTxt = (EditText) findViewById(R.id.editText);
         TextView textView = (TextView) findViewById(R.id.textViewSolution);
 
-        // Store EditText in Variable
+        // Store EditText in a variable str
         String str = inputTxt.getText().toString();
-        String[] splitStrings = str.split(" ");
-        float a = Float.parseFloat(splitStrings[0]);
-        float b = Float.parseFloat(splitStrings[1]);
-        float c = Float.parseFloat(splitStrings[2]);
         float Discriminant;
 
-        if (a != 0)
+        try
         {
-            Discriminant = b * b - 4 * a * c;
+            String[] splitStrings = str.split(" ");
+            float a = Float.parseFloat(splitStrings[0]);
+            float b = Float.parseFloat(splitStrings[1]);
+            float c = Float.parseFloat(splitStrings[2]);
 
-            if (Discriminant == 0)
+            if (a != 0)
             {
-                textView.setText(DiscriminantEqualZero(a, b, Discriminant));
-                return DiscriminantEqualZero(a, b, Discriminant);
-            }
+                Discriminant = b * b - 4 * a * c;
 
-            if (Discriminant > 0)
+                if (Discriminant == 0)
+                {
+                    textView.setText(DiscriminantEqualZero(a, b, Discriminant));
+                    return DiscriminantEqualZero(a, b, Discriminant);
+                }
+
+                if (Discriminant > 0)
+                {
+                    textView.setText(DiscriminantGreaterThanZero(a, b, Discriminant));
+                    return DiscriminantGreaterThanZero(a, b, c);
+                }
+
+                if (Discriminant < 0)
+                {
+                    textView.setText(DiscriminantLessThanZero(a, b, c, Discriminant));
+                    return DiscriminantLessThanZero(a, b, c, Discriminant);
+                }
+
+                return "Quadratic equation return path";
+            }
+            else
             {
-                textView.setText(DiscriminantGreaterThanZero(a, b, Discriminant));
-                return DiscriminantGreaterThanZero(a, b, c);
-
+                textView.setText(LinearEquation(b, c));
+                return LinearEquation(b, c);
             }
-
-            if (Discriminant < 0)
-            {
-                textView.setText(DiscriminantLessThanZero(a, b, c, Discriminant));
-                return DiscriminantLessThanZero(a, b, c, Discriminant);
-            }
-
-            return "Quadratic equation return path";
         }
-        else
+        catch (Exception e)
         {
-            textView.setText(LinearEquation(b, c));
-            return LinearEquation(b, c);
+            textView.setText("Error: " + e);
+            return "Error check the input values and format";
         }
 
     }
-
-
 
     private String DiscriminantEqualZero(float a, float b, float Discriminant)
     {
