@@ -13,9 +13,6 @@ import android.widget.TextView;
 
 public class QuadraticEquationSolver extends ActionBarActivity {
 
-    protected float Discriminant = 0;
-    //a = 0, b = 0, c = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +73,7 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         float a = Float.parseFloat(splitStrings[0]);
         float b = Float.parseFloat(splitStrings[1]);
         float c = Float.parseFloat(splitStrings[2]);
+        float Discriminant;
 
         if (a != 0)
         {
