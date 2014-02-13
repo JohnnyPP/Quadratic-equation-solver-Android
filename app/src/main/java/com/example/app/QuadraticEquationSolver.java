@@ -13,9 +13,6 @@ import android.widget.TextView;
 
 public class QuadraticEquationSolver extends ActionBarActivity {
 
-    protected float Discriminant = 0;
-    //a = 0, b = 0, c = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +24,6 @@ public class QuadraticEquationSolver extends ActionBarActivity {
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,54 +61,56 @@ public class QuadraticEquationSolver extends ActionBarActivity {
         }
     }
 
-    public String solveEquation(View view)
+    public void solveEquation(View view)
     {
         EditText inputTxt = (EditText) findViewById(R.id.editText);
         TextView textView = (TextView) findViewById(R.id.textViewSolution);
 
-        // Store EditText in Variable
+        // Store EditText in a variable str
         String str = inputTxt.getText().toString();
-        String[] splitStrings = str.split(" ");
-        float a = Float.parseFloat(splitStrings[0]);
-        float b = Float.parseFloat(splitStrings[1]);
-        float c = Float.parseFloat(splitStrings[2]);
+        float Discriminant;
 
-
-        //textView.setText("The solution " + a + b + c);
-
-        if (a != 0)
+        try
         {
-            Discriminant = b * b - 4 * a * c;
+            String[] splitStrings = str.split(" ");
+            float a = Float.parseFloat(splitStrings[0]);
+            float b = Float.parseFloat(splitStrings[1]);
+            float c = Float.parseFloat(splitStrings[2]);
 
-            if (Discriminant == 0)
+            if (a != 0)
             {
-                return DiscriminantEqualZero();
-            }
+                Discriminant = b * b - 4 * a * c;
 
-            if (Discriminant > 0)
+                if (Discriminant == 0)
+                {
+                    textView.setText(DiscriminantEqualZero(a, b, Discriminant));
+                }
+
+                if (Discriminant > 0)
+                {
+                    textView.setText(DiscriminantGreaterThanZero(a, b, Discriminant));
+                }
+
+                if (Discriminant < 0)
+                {
+                    textView.setText(DiscriminantLessThanZero(a, b, c, Discriminant));
+                }
+            }
+            else
             {
-                textView.setText(DiscriminantGreaterThanZero(a, b, Discriminant));
-                return DiscriminantGreaterThanZero(a, b, c);
-
+                textView.setText(LinearEquation(b, c));
             }
-
-            if (Discriminant < 0)
-            {
-                return DiscriminantLessThanZero();
-            }
-
-            return "Quadratic equation return path";
         }
-        else
+        catch (Exception e)
         {
-            return LinearEquation();
+            textView.setText("Error: " + e);
         }
-
     }
 
-    private String DiscriminantEqualZero()
+    private String DiscriminantEqualZero(float a, float b, float Discriminant)
     {
-        return "DEZ.DiscrEqualZero(a, b, Discriminant)";
+        return "The equation has only one root.\n\r" + "Discriminant: "
+                + Discriminant + "\n\rRoot: " + (-b - Math.sqrt(Discriminant)) / (2 * a);
     }
 
     private String DiscriminantGreaterThanZero(float a, float b, float Discriminant)
@@ -124,14 +122,20 @@ public class QuadraticEquationSolver extends ActionBarActivity {
                 + "\n\rRoot1: " + x1 + "\n\r" + "Root2: " + x2;
     }
 
-    private String DiscriminantLessThanZero()
+    private String DiscriminantLessThanZero(float a, float b, float c, float Discriminant)
     {
-        return "DLTZ.DiscrLessThanZero(a, b, c, Discriminant)";
+        double xReal = -b / (2 * a);
+        double xImaginary = (Math.sqrt(4 * a * c - b * b)) / (2 * a);
+
+        return "The equation has two complex roots.\n\r" + "Discriminant: "
+                + Discriminant
+                + "\n\rRoot1: " + xReal + " + i" + xImaginary
+                + "\n\rRoot2: " + xReal + " - i" + xImaginary;
     }
 
-    private String LinearEquation()
+    private String LinearEquation(float b, float c)
     {
-        return "LE.LinEquation(b, c)";
+        return "Linear equation has only one root: " + (-c / b);
     }
 
 }
